@@ -1,0 +1,25 @@
+<head>
+  
+<link rel="stylesheet" href="/css.css">
+</head>
+
+<script>
+function cyka() {
+var word = document.getElementById("answers").value;
+document.getElementById("website").src = word;
+var elements = document.getElementsByClassName("cyka");
+	while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+</script>
+
+
+<body>
+  <div>
+   <span class="cyka"> Link <input type="text" id="answers">	
+   <button onclick="cyka()" class="cyka">embed!</button></span>
+  <iframe height="100%" width=100% id ="website" src= ></iframe>
+  </div>
+</body>
+

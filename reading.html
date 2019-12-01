@@ -1,0 +1,95 @@
+<head>
+  
+<link rel="stylesheet" href="/css.css">
+</head>
+
+<script>
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--timer < 0) {
+            timer = 0 ;
+        }
+    }, 1000);
+}
+
+function equal(str1, str2) {
+    /* If the strings are equal, bail */
+    if (str1 === str2) {
+        return "good job 100%";
+    }
+    /*If the lengths are not equal, there is no point comparing each character.*/
+    if (str1.length != str2.length) {
+        return "your formatting is wrong.";
+    }
+    /*loop here to go through each position and check if both strings are equal.*/
+    var numDiffChar = 0;
+    var index = 0;
+    while (index < str1.length) {
+        if (str1.charAt(index) !== str2.charAt(index)) {
+            numDiffChar++;
+        }
+        index++;
+    }
+    var a = str1.length - numDiffChar;
+    return a + "/" + str1.length + " correct.";
+}
+
+var xx;
+window.onload = function () {
+    var fiveMinutes = 60 * 13,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+  var x = 1 + Math.floor(Math.random() * 45);
+  xx = x-1;
+document.getElementById('y').data = "/questions/" + x + ".pdf";
+document.getElementById('z').data = "/answers/" + x + ".pdf";
+document.getElementById('a').innerHTML = "Question number: " + x + ".";
+  var c = Math.ceil((xx+1)/5);
+document.getElementById('abc').href = "/explanations/" + c + ".pdf";
+};
+
+function cyka() {
+var lines;
+var request = new XMLHttpRequest();
+request.open('GET', "https://ihssat.github.io/text.txt", false);
+request.send(null);
+if (request.status === 200) {
+  lines = request.responseText.split("\n");
+}
+var word = document.getElementById("word").value;
+document.getElementById('b').innerHTML = equal(lines[xx], word);
+document.getElementById('c').innerHTML = lines[xx];
+}
+</script>
+
+
+<body>
+  <div class="reading">
+    <span id='a'></span>
+    <span> You have <span id="time" style="font-weight:bold">13:00</span> minutes left. &emsp;</span>
+    <span class = "answers"> Answers: <input type="text" id="word">	
+    <button onclick="cyka()">Check Answers</button></span>
+    <span id='b' class = "check"></span>
+    <p id='c' class="ans"></p>
+    <div align = "right" class= "expl">
+    <span class="exp">&emsp; Click <a id='abc' target="_blank" href="1.pdf">here</a> for explanations.</span>
+    </div>
+  </div>
+  <div class="pdf">
+    <object width=95% height=86% type="application/pdf" id='y' data="/questions/1.pdf">
+      <p>Insert your error message here, if the PDF cannot be displayed.</p>
+    </object>
+  </div>
+  <div class="pdf2">
+    <object width=95% height=86% type="application/pdf" id='z' data="/answers/1.pdf">
+      <p>Insert your error message here, if the PDF cannot be displayed.</p>
+    </object>
+  </div>
+</body>
+
